@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'style/log.css' %}">
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+		html{
+			font-family: 'Montserrat';
+			background-color:#E0E0E0;
+		}
+		.logo{
+			margin:0px;
+			padding: 0px;
+			font-weight: bold;
+			font-size:30px;
+			margin-top: 80px;
+			margin-left: 230px;
+
+		}
+		a{
+			text-decoration: none;
+			color: #039be5;
+			font-family: Montserrat;
+		}
+		.home a{
+			margin-left: 200px;
+		}
+	</style>
+</head>
+<body>
+	<div class="logo">
+		<a href="/">Monthly Expenses</a>
+	</div>  
+<div class="total">
+	<form method="post">
+		{% csrf_token %}
+		<h2>login</h2>
+		<div>
+			<input class="in" type="text" name="username" placeholder="username">
+		</div>
+		<div>
+			<input class="in" type="password" name="password" placeholder="password">
+		</div>
+		<input class="btn" type="submit">
+		<p>Dont have account?<a href="signin">register</a></p>
+	</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>registeration</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'style/reg.css' %}">
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+	<style type="text/css">
+		.logo{
+			margin:0px;
+			padding: 0px;
+			font-weight: bold;
+			font-size:30px;
+			margin-top: 80px;
+			margin-left: 230px;
+			}
+		.logo a{
+			text-decoration: none;
+			color: #039be5;
+			font-family: Montserrat;
+		}
+	</style>
+</head>
+</head>
+<body>
+	<div class="logo">
+		<a href="/">Monthly Expenses</a>
+	</div>  
+	<form method="post" class="total">
+		<h2>registeration form</h2>
+		{% csrf_token %}
+		<input class="in" type="name" name="first_name" class="name" placeholder="first name"><br>
+		<input class="in" type="name" name="last_name" class="name" placeholder="last name"><br>
+		<input class="in" type="name" name="username" class="name" placeholder="user name"><br>
+		<input class="in" type="email" name="email" class="name" placeholder="email"><br>
+		<input class="in" type="password" name="password1" class="name" placeholder="password"><br>
+		<input class="in" type="password" name="password2" class='name'placeholder="confirm password"><br>
+		<input type="submit" name="btn" class="btn">
+		<p> have an account?<a href="login">login</a></p>
+	</form>
+	
+</body>
+</html>

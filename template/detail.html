@@ -1,0 +1,225 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'style/detail.css' %}">
+    <style type="text/css">
+    	label{
+    		color:#26a69a;
+    	}
+    	.site-footer
+		{
+		  background-color:#26272b;
+		  padding:45px 0 20px;
+		  font-size:15px;
+		  line-height:24px;
+		  color:#737373;
+		}
+		.site-footer hr
+		{
+		  border-top-color:#bbb;
+		  opacity:0.5
+		}
+		.site-footer hr.small
+		{
+		  margin:20px 0
+		}
+		.site-footer h6
+		{
+		  color:#fff;
+		  font-size:16px;
+		  text-transform:uppercase;
+		  margin-top:5px;
+		  letter-spacing:2px
+		}
+		.site-footer a
+		{
+		  color:#737373;
+		}
+		.site-footer a:hover
+		{
+		  color:#3366cc;
+		  text-decoration:none;
+		}
+		.footer-links
+		{
+		  padding-left:0;
+		  list-style:none
+		}
+		.footer-links li
+		{
+		  display:block
+		}
+		.footer-links a
+		{
+		  color:#737373
+		}
+		.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+		{
+		  color:#3366cc;
+		  text-decoration:none;
+		}
+		.footer-links.inline li
+		{
+		  display:inline-block
+		}
+		.site-footer .social-icons
+		{
+		  text-align:right
+		}
+		.site-footer .social-icons a
+		{
+		  width:40px;
+		  height:40px;
+		  line-height:40px;
+		  margin-left:6px;
+		  margin-right:0;
+		  border-radius:100%;
+		  background-color:#33353d
+		}
+		.copyright-text
+		{
+		  margin:0
+		}
+		@media (max-width:991px)
+		{
+		  .site-footer [class^=col-]
+		  {
+		    margin-bottom:30px
+		  }
+		}
+		@media (max-width:767px)
+		{
+		  .site-footer
+		  {
+		    padding-bottom:0
+		  }
+		  .site-footer .copyright-text,.site-footer .social-icons
+		  {
+		    text-align:center
+		  }
+		}
+    </style>
+</head>
+<div class="container">
+	<div class="logo">
+		<a href="/">Monthly Expenses</a>
+	</div>
+	<ul class="d-flex flex-row align-items-start justify-content-start" style="list-style: none;">
+		<li s><a href="/">Home</a></li>
+		{% if user.is_authenticated%}
+		<li style="color: #007bff">Hi, {{user.username}}</li>
+		<li><a href="account/logout">logout</a></li>
+		{% endif %}
+		<li><a href="mylist">MyList</a></li>
+    </ul>
+
+
+    <div class="title">
+		<h1 class='h1' style="margin-top:0px; margin-bottom: 20px">{{month.name}}</h1>
+	</div> 
+    <div style="margin-left: 50px; margin-top: 50px; margin-bottom: 50px;">
+		<form method="GET" >
+			{{myfilter.form}}
+			<button type="submit" style="margin-top: 0px;" class="btn btn-primary">search</button>
+		</form>
+	</div>
+	<div class="table-container" id="table" style="margin-left: 100px;">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>name</th>
+					<th>title</th>
+					<th>price(Rs)</th>
+			        <th>date</th>
+			        <th>action</th>
+			    </tr>
+			</thead>
+			<tbody>
+				{% for i in items%}
+				<tr>
+					<td>{{i.itemname}}</td>
+					<td>{{i.title}}</td>
+					<td>{{i.price}}</td>
+					<td>{{i.date}}</td>
+					<td><a href="/delete/{{i.id}}" class="btn" style="margin-top: 0px; padding: 5px;background-color:#007bff;color:white;">delete</a></td>
+					</tr>
+				{% endfor%}
+			</tbody>
+		</table>
+		<button class="btn btn-primary" id="btn">add price
+		</button>
+	    <section class="section section-stats" style="margin-top: 40px;">
+	    	<div class="card text-white bg-primary mb-3" style="max-width: 15rem;">
+	    		<div class="card-header" style="text-transform: uppercase;"><strong>{{month.name}}</strong></div>
+	    		<div class="card-body">
+	    			<h5 class="card-title" style="text-transform: uppercase;font-weight: bold; font-size: 20px;">Total:RS {{month.total}}</h5>
+	    		</div>
+	    	</div>
+	    </section>
+	</div>
+</div>
+<div class="form">
+		<div class="in" style="width: 350px;height: 500px">
+			<div class="close" style="margin-left: 290px;" >+</div>
+			<form method="POST" style="margin-top: 20px;">
+				<h6>Enter The Detail</h6>
+				{% csrf_token %}
+				<label for="itemname">Itemname</label>
+			    <input style="width: 100%" name="itemname" id="itemname">
+			    <br><br>
+
+			    <label for="title">title</label>
+			    <input style="width: 100%"  name="title" id="title"><br><br>
+
+			    <label for="price">price</label>
+			    <input  style="width: 100%" name="price" id="price"><br><br>
+
+			    <label for='date'>date</label>
+			    <input type="date" name="date" style="width: 100%" id="date"><br><br>
+
+			    <input type="submit" class="btn btn-primary" name="submit">
+			</form>
+		</div>
+	</div>
+	<!-- Site footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <h6>About</h6>
+            <p class="text-justify">Expensive.com <i>in this website is used to calculating to daily expensives
+            and this app very easy to operate. simply calculating you amounts.</p>
+          </div>
+
+
+          <div class="col-xs-6 col-md-3">
+            <h6>Contact</h6>
+            <ul class="footer-links">
+              <li>chennai,tamilnadu</li>
+              <li>prabu6964@gmail.com</li>
+              <li>phone:1234567</li>
+              <li>mobile:90000000000</li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by 
+         <a href="#">Expensive.com</a>.
+            </p>
+          </div>
+      </div>
+</footer>
+<script src="{% static 'js/add.js' %}"></script>	
+</body>
+</html>
