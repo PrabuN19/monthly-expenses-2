@@ -10,8 +10,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'style/detail.css' %}">
     <style type="text/css">
+    	@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
     	label{
     		color:#26a69a;
+    	}
+    	body {
+    		font-family: 'Montserrat';
     	}
     	.site-footer
 		{
@@ -69,20 +73,7 @@
 		{
 		  display:inline-block
 		}
-		.site-footer .social-icons
-		{
-		  text-align:right
-		}
-		.site-footer .social-icons a
-		{
-		  width:40px;
-		  height:40px;
-		  line-height:40px;
-		  margin-left:6px;
-		  margin-right:0;
-		  border-radius:100%;
-		  background-color:#33353d
-		}
+		
 		.copyright-text
 		{
 		  margin:0
@@ -104,35 +95,49 @@
 		  {
 		    text-align:center
 		  }
+		  .form{
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0.7);
+			position: absolute;
+			top: 0;
+			background-repeat: no-repeat;
+			background-size: cover;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			display: none;
 		}
     </style>
 </head>
 <div class="container">
-	<div class="logo">
+	<div class="logo" style="margin-top: 0px; padding-top: 20px;">
 		<a href="/">Monthly Expenses</a>
 	</div>
-	<ul class="d-flex flex-row align-items-start justify-content-start" style="list-style: none;">
-		<li s><a href="/">Home</a></li>
+	<ul class="d-flex flex-row align-items-start justify-content-start" id="list" style="list-style: none;">
+		<li ><a href="/">Home</a></li>
 		{% if user.is_authenticated%}
 		<li style="color: #007bff">Hi, {{user.username}}</li>
 		<li><a href="account/logout">logout</a></li>
 		{% endif %}
-		<li><a href="mylist">MyList</a></li>
+		<li ><a href="mylist">MyList</a></li>
     </ul>
 
 
     <div class="title">
 		<h1 class='h1' style="margin-top:0px; margin-bottom: 20px">{{month.name}}</h1>
 	</div> 
-    <div style="margin-left: 50px; margin-top: 50px; margin-bottom: 50px;">
+    <div style="margin-left: 30px; margin-top: 50px; margin-bottom: 50px;">
+    	
 		<form method="GET" >
 			{{myfilter.form}}
 			<button type="submit" style="margin-top: 0px;" class="btn btn-primary">search</button>
 		</form>
+
 	</div>
-	<div class="table-container" id="table" style="margin-left: 100px;">
+	<div class="table-container" id="table" style="margin-left:50px;">
 		<table class="table">
-			<thead>
+			<thead style="color:#007bff;">
 				<tr>
 					<th>name</th>
 					<th>title</th>
@@ -141,7 +146,7 @@
 			        <th>action</th>
 			    </tr>
 			</thead>
-			<tbody>
+			<tbody style="color:#26a69a;">
 				{% for i in items%}
 				<tr>
 					<td>{{i.itemname}}</td>
@@ -153,7 +158,7 @@
 				{% endfor%}
 			</tbody>
 		</table>
-		<button class="btn btn-primary" id="btn">add price
+		<button class="btn btn-primary" id="btn" style="height: 80px;width: 150px;">Add price
 		</button>
 	    <section class="section section-stats" style="margin-top: 40px;">
 	    	<div class="card text-white bg-primary mb-3" style="max-width: 15rem;">
@@ -165,8 +170,8 @@
 	    </section>
 	</div>
 </div>
-<div class="form">
-		<div class="in" style="width: 350px;height: 500px">
+<div class="form" >
+		<div class="in" style="width: auto;height: 500px">
 			<div class="close" style="margin-left: 290px;" >+</div>
 			<form method="POST" style="margin-top: 20px;">
 				<h6>Enter The Detail</h6>
@@ -203,9 +208,11 @@
             <h6>Contact</h6>
             <ul class="footer-links">
               <li>chennai,tamilnadu</li>
-              <li>prabu6964@gmail.com</li>
-              <li>phone:1234567</li>
-              <li>mobile:90000000000</li>
+               <li>expansesadm@gmail.com</li>
+            </ul>
+            <h6>Feedback</h6>
+            <ul>
+              <li>expansesadm@gmail.com</li>
             </ul>
           </div>
         </div>

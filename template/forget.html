@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Forgot Password{% endblock title %}
+
+{% block content %}
+<div class="container">
+	<form method="post">
+    {% csrf_token %}
+    <p style="color: #26a69a;font-size: 20px;">Please enter your email address. 
+        You will receive a link to create a new password via email.</p>
+        {{form}}
+
+    <button class="btn" type="submit">submit</button>
+	</form>
+</div>
+{% endblock content %}

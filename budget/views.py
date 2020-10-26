@@ -6,6 +6,7 @@ from django.views.generic import CreateView
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required,user_passes_test
 from .filter import itemfilter
+from django.contrib import messages
 
 
 
@@ -15,10 +16,11 @@ def index(request):
 
 def detail(request,months_slug):
 	month=get_object_or_404(months,slug=months_slug)
+	context={}
 	if request.method=='GET':
 		customer=Customer.objects.get(user_id=request.user.id)
 		items=month.item.all().filter(customer_id = customer)
-   
+	   
 		myfilter=itemfilter(request.GET, queryset=items)
 		items=myfilter.qs
 
@@ -57,6 +59,8 @@ class projectcreateview(CreateView):
 		form.instance.customer = Customer.objects.get(user_id=self.request.user.id)
 		self.object.save()
 		return HttpResponseRedirect(self.get_success_url())
+	'''def form_invalid(self,form):
+		return render(self.request,self.template_name)'''
 
 @login_required(login_url='account/login')		
 def my(request):
@@ -68,5 +72,17 @@ def my(request):
 
 def delete(request,id):
 	it=item.objects.get(id=id)
+	month=slugify(it.month)
 	it.delete()
 	return redirect('mylist')
+	
+ 
+
+
+def month_del(request,id):
+	mon=months.objects.get(id=id)
+	mon.delete()
+	return redirect('mylist')
+
+
+

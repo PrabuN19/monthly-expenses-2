@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<style type="text/css">
+		.form{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.7);
+	position: absolute;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+}
+.in{
+	width: 300px;
+	height: 300px;
+	background-color: white;
+	border-radius: 4px;
+	padding: 30px;
+}
+
+.btn-small{
+	margin-top: 40px;
+}
+.in h6{
+	font-weight: bold;
+	font-size:20px;
+	color:#26a69a;
+	text-align: center;
+	margin-bottom: 5px;
+}
+.close{
+	margin-left: 430px;
+	position: absolute;
+	top: 100px;
+	font-size: 42px;
+	transform: rotate(45deg);
+	cursor: pointer;
+}
+#itemname,#title,#price,#date{
+	border:none;
+	border-bottom:1px solid #26a69a;
+}
+	</style>
+</head>
+<body>
+<div class="form" >
+		<div class="in" style="width: auto;height: auto">
+			<div class="close" style="margin-left: 290px;" >+</div>
+			<form method="POST" style="margin-top: 20px;">
+				<h6>Enter The Detail</h6>
+				{% csrf_token %}
+				<label for="itemname">Itemname</label>
+			    <input style="width: 100%" name="itemname" id="itemname">
+			    <br><br>
+
+			    <label for="title">title</label>
+			    <input style="width: 100%"  name="title" id="title"><br><br>
+
+			    <label for="price">price</label>
+			    <input  style="width: 100%" name="price" id="price"><br><br>
+
+			    <label for='date'>date</label>
+			    <input type="date" name="date" style="width: 100%" id="date"><br><br>
+
+			    <input type="submit" class="btn btn-primary" name="submit">
+			</form>
+		</div>
+	</div>
+</html>

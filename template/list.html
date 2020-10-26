@@ -10,6 +10,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'style/list.css' %}">
     <style type="text/css">
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+      label{
+        color:#26a69a;
+      }
+      body {
+        font-family: 'Montserrat';
+      }
     	.active, .btn:hover {
     		background-color: #76d7da;
     		color: white;
@@ -118,7 +125,10 @@
             text-align:center
           }
         }
-   
+        .card-panel a:hover{
+          color: black;
+
+        }
     </style>
 </head>
 <body>
@@ -147,13 +157,11 @@
     		<div class="col 3">
     			<div class="card-panel">
     				<h4>{{p.name}}</h4>
-    				<a href="{{p.name}}" class="btn">view</a>
+    				<a href="{{p.name}}"  style="padding: 0px; margin:0px; margin-right: 20px;"><i class="samll material-icons">view_list</i></a>
+            <a href="/month_del/{{p.id}}" style="margin-top: 10px;"><i class="small material-icons ">delete</i></a>
     			</div>
     		</div>
-    		{% empty %}
-    		<div>
-    			<h4>list is empty</h4>
-    		</div>
+    		
     		{% endfor %}
     	</div>
     </div>
@@ -172,9 +180,11 @@
             <h6>Contact</h6>
             <ul class="footer-links">
               <li>chennai,tamilnadu</li>
-              <li>prabu6964@gmail.com</li>
-              <li>phone:1234567</li>
-              <li>mobile:90000000000</li>
+              <li>expansesadm@gmail.com</li>
+            </ul>
+            <h6>Feedback</h6>
+            <ul>
+              <li>expansesadm@gmail.com</li>
             </ul>
           </div>
         </div>

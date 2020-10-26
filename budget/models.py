@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 
 class months(models.Model):
-	name=models.CharField(max_length=100)
+	name=models.CharField(max_length=100,unique=True)
 	slug=models.SlugField(max_length=100,blank=True)
 	customer=models.ForeignKey('Customer', on_delete=models.CASCADE,null=True)
 
@@ -25,16 +25,11 @@ class months(models.Model):
 
 class Customer(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
-    address = models.CharField(max_length=40)
-    mobile = models.CharField(max_length=20,null=False)
+ 
     @property
     def get_name(self):
-        return self.user.first_name+" "+self.user.last_name
-    @property
-    def get_id(self):
-        return self.user.id
-    def __str__(self):
-        return self.user.first_name
+        return self.user.username
+
 
 class item(models.Model):
 	customer=models.ForeignKey('Customer', on_delete=models.CASCADE,null=True)

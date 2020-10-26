@@ -45,6 +45,8 @@ html{
 	background-color: rgba(0,0,0,0.7);
 	position: absolute;
 	top: 0;
+	background-repeat: no-repeat;
+	background-size: auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;

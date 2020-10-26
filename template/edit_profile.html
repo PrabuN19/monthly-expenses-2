@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Forgot Password{% endblock title %}
+
+{% block content %}
+<div class="container">
+	<h4 style="color: #26a69a">Edit Your Profile</h4>
+	{% if status %}
+	<div style="color: #26a69a;padding: 20px;font-weight: bold;font-size: 20px;">
+		{{status}}
+	</div>
+	{% endif %}
+	<form method="post">
+    {% csrf_token %}
+    <div class="form-row">
+    	<div  class="col">
+    		<label style="font-size: 15px">username</label>
+    		<input type="text" name="username" value="{{user.username}}" placeholder="username">
+    	</div>
+    	<div  class="col">
+    		<label style="font-size: 15px;">email</label>
+    		<input type="email" name="email" value="{{user.email}}" placeholder="email">
+    		
+    	</div>
+    </div>
+    <button class="btn" type="submit">update</button>
+    <button class="btn"><a href="/" style="color: white">Back</a></button>
+	</form>
+</div>
+{% endblock content %}

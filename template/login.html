@@ -3,7 +3,7 @@
 <html>
 <head>
 	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'style/log.css' %}">
+
 	<style type="text/css">
 		@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 		html{
@@ -15,8 +15,8 @@
 			padding: 0px;
 			font-weight: bold;
 			font-size:30px;
-			margin-top: 80px;
-			margin-left: 230px;
+			text-align: center;
+			margin-top: 70px;
 
 		}
 		a{
@@ -27,24 +27,96 @@
 		.home a{
 			margin-left: 200px;
 		}
+		::placeholder { 
+			color: #3a1046;
+			opacity: 0.6; 
+			font-size: 15px;
+		}
+
+		
+
+		form{
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			position: absolute;
+			border: 1px solid #3a1046;
+			border-radius: 10px;
+			padding: 30px;
+		}
+		
+		h2{
+			color:#3a1046;
+			margin-left: 80px;
+		}
+		p{
+			color: #3a1046;
+			margin-left: 20px;
+			margin-top: 10px;
+		}
+		p a{
+			
+			margin-left: 5px;
+		}
+		p a:hover{
+		
+			color: white;
+		}
+		.in{
+			width:220px;
+			border: none;
+			background-color: transparent;
+			border-bottom: 1px solid #3a1046;
+			padding: 20px 10px;
+		}
+		#btn{
+			margin-top: 20px;
+			width: 100%;
+			padding: 10px;
+
+		}
+		input[type="submit" i]{
+			color:white;
+			text-align: center;
+			background-color: #039be5;
+		}
+
+		.message p{
+			margin: 0px;
+			padding: 0px;
+			text-align: center;
+			color: red;
+			width: 250px;
+			padding-top: 10px;
+
+		}
+
 	</style>
 </head>
 <body>
 	<div class="logo">
 		<a href="/">Monthly Expenses</a>
-	</div>  
+	</div>   
 <div class="total">
-	<form method="post">
+	<form method="post" class="form">
 		{% csrf_token %}
-		<h2>login</h2>
+		<h2>Login</h2>
 		<div>
-			<input class="in" type="text" name="username" placeholder="username">
+			<input class="in" type="username" name="username" placeholder="username or email">
 		</div>
 		<div>
 			<input class="in" type="password" name="password" placeholder="password">
 		</div>
-		<input class="btn" type="submit">
-		<p>Dont have account?<a href="signin">register</a></p>
+		{% if messages%}
+		{% for message in messages%}
+		<div class='message'>
+		   <p> {{message}}</p>
+		</div>
+		{% endfor%}
+		{% endif %}  
+		<input class="btn"  id='btn' type="submit">
+		<p style="text-align: center; margin: 0px;padding: 10px;"><a href="password_reset">Forget Password!</a></p>
+		<p>Dont have account?<a href="signup">register</a></p>
 	</form>
 </div>
 </body>

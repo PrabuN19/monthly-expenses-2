@@ -1,18 +1,92 @@
 {% extends 'base.html' %}
 {% block content %}
+<style type="text/css">
+  .noproject-wrapper{
+    margin-top: 150px;
+    margin-bottom: 30px;
+    padding: 80px 0px;
+    border:none;
+  }
+  .d-flex li{
+    width: 200px;
+    height: 45px;
+  }
+  .d-flex li:hover{
+      background-color:  #76d7da;
+      border:1px solid white;
+  }
+  .nav{
+    background: linear-gradient(to right, #90e4e0, #bb519f);
+    background-size: cover;
+  }
+  .logo a{
+    padding:20px;
+  }
+  .noproject-wrapper{
+    margin-top: 200px;
+    padding: 50px 0px;
+    border: 3px solid gray;
+    border-style: dashed;
+    border-color: #26a69a;
+  }
+  .profile{
+     width:180;
+  }
+  .profile ul li a{
+    color: ##26a69a;
+    font-size: 20px;
+    background-color:  #76d7da;
+    border:1px solid white;
+    height: 50px;
+    display: block;
+  }
+    
+  .profile ul{
+    display: none;
+    position: relative;
+  }
+  .profile:hover >ul{
+    display: block;
+  }
+
+  .profile:hover{
+      background-color:  #76d7da;
+      width:200px;
+      border:1px solid white;
+      height: 45px;
+      line-height: 50px;
+      text-align: center;
+      float: left;
+      color:white;
+      font-size: 18px;
+  }
+  .nav a{
+    color:white;
+  }
+  
+</style>
+<div class="nav">
 <div class="logo">
-	<a href="/">Monthly Expenses</a>		
+  <a href="/">Monthly Expenses</a>    
 </div>
 <ul class="d-flex flex-row align-items-start justify-content-start">
-	<li  class="active"><a href="/">Home</a></li>
-	{% if user.is_authenticated %}
-	<li><a href="#">{{user.username}}</a></li>
-	<li><a href="account/logout">logout</a></li>
-	{% else %}
-	<li><a href="account/login">login</a></li>
-	<li><a href="account/signin">signin</a></li>
-	{% endif %}
+  <li  class="active"><a href="/">Home</a></li>
+  {% if user.is_authenticated %}
+  <li class="profile"><a href="#"><i class="small material-icons">people</i></a>
+    <ul>
+    <li><a href="#">{{user.username}}</a></li>
+    <li><a  href="account/edit_profile">Edit Profile</a></li>
+    <li><a  href="account/change_password">Reset Password</a></li>
+  </ul>
+
+  </li>
+  <li><a href="account/logout">Logout</a></li>
+  {% else %}
+  <li><a href="account/login">Login</a></li>
+  <li><a href="account/signup">Signup</a></li>
+  {% endif %}
     </ul>
+  </div>
 <div class="container">
 	<div class="noproject-wrapper center">
 		<h3 class="grey-text">Log in and use!</h3>
@@ -41,9 +115,11 @@
             <h6>Contact</h6>
             <ul class="footer-links">
               <li>chennai,tamilnadu</li>
-              <li>prabu6964@gmail.com</li>
-              <li>phone:1234567</li>
-              <li>mobile:90000000000</li>
+               <li>expansesadm@gmail.com</li>
+            </ul>
+            <h6>Feedback</h6>
+            <ul>
+              <li>expansesadm@gmail.com</li>
             </ul>
           </div>
         </div>
