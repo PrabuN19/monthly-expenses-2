@@ -23,12 +23,7 @@ class months(models.Model):
 			total_price+=prices.price
 		return total_price
 
-class Customer(models.Model):
-    user=models.OneToOneField(User,on_delete=models.CASCADE)
- 
-    @property
-    def get_name(self):
-        return self.user.username
+
 
 
 class item(models.Model):
@@ -38,3 +33,17 @@ class item(models.Model):
 	title=models.CharField(max_length=100)
 	price=models.IntegerField()
 	date=models.DateField()
+
+
+class Customer(models.Model):
+    user=models.OneToOneField(User,on_delete=models.CASCADE)
+    address = models.CharField(max_length=40)
+    mobile = models.CharField(max_length=20,null=False)
+    @property
+    def get_name(self):
+        return self.user.first_name+" "+self.user.last_name
+    @property
+    def get_id(self):
+        return self.user.id
+    def __str__(self):
+        return self.user.first_name

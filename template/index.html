@@ -8,7 +8,7 @@
     border:none;
   }
   .d-flex li{
-    width: 200px;
+    width: 150px;
     height: 45px;
   }
   .d-flex li:hover{
@@ -51,7 +51,7 @@
 
   .profile:hover{
       background-color:  #76d7da;
-      width:200px;
+      width:150px;
       border:1px solid white;
       height: 45px;
       line-height: 50px;
@@ -72,7 +72,7 @@
 <ul class="d-flex flex-row align-items-start justify-content-start">
   <li  class="active"><a href="/">Home</a></li>
   {% if user.is_authenticated %}
-  <li class="profile"><a href="#"><i class="small material-icons">people</i></a>
+  <li class="profile"><a href="#" ><i style="margin-top: 10px;" class="small material-icons">people</i></a>
     <ul>
     <li><a href="#">{{user.username}}</a></li>
     <li><a  href="account/edit_profile">Edit Profile</a></li>

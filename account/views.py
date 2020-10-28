@@ -38,7 +38,7 @@ def signin(request):
 	else:	
 		return render(request,'registeration.html')
 '''
-def customer_signup_view(request):
+'''def customer_signup_view(request):
     userForm=forms.CustomerUserForm()
     mydict={'userForm':userForm}
     if request.method=='POST':
@@ -47,15 +47,37 @@ def customer_signup_view(request):
         if userForm.is_valid():
         	user=userForm.save()
         	user.set_password(user.password)
-       		user.save()
-       		my_customer_group = Group.objects.get_or_create(name='CUSTOMER')
-       		my_customer_group[0].user_set.add(user)
-       		return redirect('login')
+        	user.save()
+        	my_customer_group = Group.objects.get_or_create(name='CUSTOMER')
+        	my_customer_group[0].user_set.add(user)
+        	return HttpResponseRedirect('login')
         else:
-        	messages.warning(request, 'Username already used!')
+        	messages.warning(request, 'Username or Email already used!')
         	return HttpResponseRedirect('signup')
-    return render(request,'customersignup.html',context=mydict)
+    return render(request,'customersignup.html',context=mydict)'''
 
+
+def customer_signup_view(request):
+    userForm=forms.CustomerUserForm()
+    customerForm=forms.CustomerForm()
+    mydict={'userForm':userForm,'customerForm':customerForm}
+    if request.method=='POST':
+    	userForm=forms.CustomerUserForm(request.POST)
+    	customerForm=forms.CustomerForm(request.POST,request.FILES)
+    	if userForm.is_valid() and customerForm.is_valid():
+    		user=userForm.save()
+    		user.set_password(user.password)
+    		user.save()
+    		customer=customerForm.save(commit=False)
+    		customer.user=user
+    		customer.save()
+    		my_customer_group = Group.objects.get_or_create(name='CUSTOMER')
+    		my_customer_group[0].user_set.add(user)
+    		return HttpResponseRedirect('login')
+    	else:
+    		messages.warning(request, 'Username or Email already used!')
+    		return HttpResponseRedirect('signup')
+    return render(request,'customersignuptwo.html',context=mydict)
 
 
 
