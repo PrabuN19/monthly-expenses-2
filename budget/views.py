@@ -72,7 +72,6 @@ def my(request):
 
 def delete(request,id):
 	it=item.objects.get(id=id)
-	month=slugify(it.month)
 	it.delete()
 	return redirect('mylist')
 	
