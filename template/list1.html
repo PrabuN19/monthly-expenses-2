@@ -107,13 +107,14 @@
 </head>
 <body>
 	<div class="form">
-		<div class="in">
+		<div class="in" style="height: 300px;">
 			<div class="close">+</div>
 			<form method="POST">
 				<h6>Enter The Month Name</h6>
 				{% csrf_token %}
 				{{form.as_p}}
-				<p>Month was Unique so follow the example(may-20)</p>
+				<p>Note:- The month name is unique so put your user id
+				<strong style="color:white;font-weight: bold; background-color: #26a69a">Your ID is: {{user.id}}</strong>(ex:may-20-{{user.id}})</p>
 				<button class="btn">save</button>
 			</form>
 		</div>
