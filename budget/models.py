@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 
 class months(models.Model):
-	name=models.CharField(max_length=100,unique=True)
+	name=models.CharField(max_length=100,unique=False)
 	slug=models.SlugField(max_length=100,blank=True)
 	customer=models.ForeignKey('Customer', on_delete=models.CASCADE,null=True)
 
